@@ -1,6 +1,6 @@
 const remote = require('electron').remote;
 
-var angApp = angular.module('myApp', ['ngMaterial']);
+var angApp = angular.module('myApp', ['ngMaterial', 'md.data.table']);
 angApp.config(function($mdThemingProvider) {
     $mdThemingProvider.theme('default')
         .primaryPalette('blue')
