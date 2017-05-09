@@ -12,7 +12,8 @@
   "scripts": {
     "test": "xo",
     "start": "electron .",
-    "build": "electron-packager . --out=dist --asar --overwrite --all"
+    "build": "electron-packager . --out=dist --asar --overwrite --all",
+    "postinstall": "electron-rebuild"
   },
   "files": [
     "index.js",
@@ -25,12 +26,14 @@
   ],
   "dependencies": {
     "bower": "^1.8.0",
-    "electron-debug": "^1.1.0"
+    "electron-debug": "^1.1.0",
+    "pouchdb": "^6.2.0"
   },
   "devDependencies": {
     "devtron": "^1.4.0",
     "electron": "^1.6.2",
     "electron-packager": "^8.6.0",
+    "electron-rebuild": "^1.5.10",
     "karma": "^1.6.0",
     "karma-chrome-launcher": "^2.0.0",
     "karma-jasmine": "^1.1.0",
