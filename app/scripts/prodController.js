@@ -1,82 +1,35 @@
 angApp.
-controller('ProdCtrl', ['$mdEditDialog', '$q', '$scope', '$timeout', function ($mdEditDialog, $q, $scope, $timeout, prodService){
+controller('ProdCtrl', ['$mdEditDialog', '$q', '$scope', '$timeout', 'prodService', function ($mdEditDialog, $q, $scope, $timeout, prodService){
     $scope.counter = 1;
 
     $scope.selected = [];
-  $scope.limitOptions = [5, 10, 15];
+    $scope.limitOptions = [10, 20, 30, 50];
 
-  $scope.options = {
-    limitSelect: true,
-    pageSelect: true
-  };
+    $scope.options = {
+        limitSelect: true,
+        pageSelect: true
+    };
 
-  $scope.query = {
-    order: 'name',
-    limit: 5,
-    page: 1
-  };
+    $scope.query = {
+        order: 'prix',
+        limit: 20,
+        page: 1
+    };
 
-  $scope.pieces = [
-        {
-    _id: 1,
-    prix: 10,
-    collection: "Pinky Poo",
-    categorie: "Coussin",
-    matiere: "Polaire",
-    taille: "Enfant",
-    commande: false,
-    date_ajout: "01/01/2000",
-    date_vente: "02/01/2000",
-    desc: "Tunique bleue jolie"
-  },
-  {
-    _id: 1,
-    prix: 10,
-    collection: "Pinky Poo",
-    categorie: "Coussin",
-    matiere: "Polaire",
-    taille: "Enfant",
-    commande: false,
-    date_ajout: "01/01/2000",
-    date_vente: "02/01/2000",
-    desc: "Tunique bleue jolie"
-  },
-  {
-    _id: 1,
-    prix: 10,
-    collection: "Pinky Poo",
-    categorie: "Coussin",
-    matiere: "Polaire",
-    taille: "Enfant",
-    commande: false,
-    date_ajout: "01/01/2000",
-    date_vente: "02/01/2000",
-    desc: "Tunique bleue jolie"
-  },
-  {
-    _id: 1,
-    prix: 10,
-    collection: "Pinky Poo",
-    categorie: "Coussin",
-    matiere: "Polaire",
-    taille: "Enfant",
-    commande: false,
-    date_ajout: "01/01/2000",
-    date_vente: "02/01/2000",
-    desc: "Tunique bleue jolie"
-  }
-    ];
+    $scope.pieces = prodService.getAllDocs();
 
 
-  $scope.toggleLimitOptions = function () {
-    $scope.limitOptions = $scope.limitOptions ? undefined : [5, 10, 15];
-  };
+    $scope.toggleLimitOptions = function () {
+        $scope.limitOptions = $scope.limitOptions ? undefined : [10, 20, 30, 50];
+    };
 
-  $scope.loadStuff = function () {
-    $scope.promise = $timeout(function () {
-      // loading
-    }, 2000);
-  }
+    $scope.loadStuff = function () {
+        $scope.promise = prodService.getAllDocs();
+        $scope.promise.then(function(doc){
+            console.log(doc);
+            $scope.pieces = doc;
+        });
+    }
 
 
 
@@ -95,6 +48,28 @@ controller('ProdCtrl', ['$mdEditDialog', '$q', '$scope', '$timeout', function ($
         };
         prodDB.put(piece1);
         $scope.counter++;
+    }
+
+    $scope.addMassTest = function(){
+
+        for(i = 0; i< 5000; i++){
+            var piece1 = {
+                _id: $scope.counter.toString(),
+                prix: Math.floor(Math.random() * 1000),
+                collection: $scope.makeid(),
+                categorie: $scope.makeid(),
+                matiere: $scope.makeid(),
+                taille: $scope.makeid(),
+                commande: false,
+                date_ajout: new Date(),
+                date_vente: null,
+                desc: $scope.makeid()
+            };
+            $scope.counter++;
+            prodDB.put(piece1);
+
+        }
+
     }
 
     $scope.makeid = function (){

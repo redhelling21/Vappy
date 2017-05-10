@@ -23,9 +23,7 @@ angApp.filter('unsafe', function($sce) { return $sce.trustAsHtml; });
 
 angApp.service("prodService", function(){
     this.getAllDocs = function(){
-        prodDB.allDocs({include_docs: true, descending: true}, function(err, doc) {
-          return doc.rows;
-        });
+        return prodDB.allDocs({include_docs: true, descending: true});
     }
 
     this.sortByField = function(field, lim, sk){
