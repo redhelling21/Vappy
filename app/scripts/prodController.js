@@ -11,7 +11,7 @@ controller('ProdCtrl', ['$mdEditDialog', '$q', '$scope', '$timeout', 'prodServic
     };
 
     $scope.query = {
-        order: 'prix',
+        order: 'doc.prix',
         limit: 20,
         page: 1
     };
@@ -30,8 +30,6 @@ controller('ProdCtrl', ['$mdEditDialog', '$q', '$scope', '$timeout', 'prodServic
             $scope.pieces = doc;
         });
     }
-
-
 
     $scope.addTest = function(){
         var piece1 = {

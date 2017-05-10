@@ -16,10 +16,17 @@
             <div ng-controller="ProdCtrl" layout="column">
                <md-button style="display: none;" ng-click="addTest()">Add</md-button>
                <md-button style="display: none;" ng-click="addMassTest()">Add Mass</md-button>
-               <md-toolbar class="table-toolbar">
-                  <md-button class="md-icon-button" ng-click="loadStuff()">
-                   <md-icon>refresh</md-icon>
-                </md-button>
+               <md-toolbar class="table-toolbar" layout = "row">
+                <div flex></div>
+                <div class="table-toolbar-right-buttons">
+                  <md-button class="md-icon-button" ng-click="showAddPieceForm()">
+                   <md-icon>add</md-icon>
+                  </md-button>
+                    <md-button class="md-icon-button" ng-click="loadStuff()">
+                     <md-icon>refresh</md-icon>
+                  </md-button>
+                </div>
+                
              </md-toolbar>
 
             <md-content style="max-height: calc(100vh - 180px);">
@@ -27,26 +34,33 @@
               <table md-table ng-model="selected" md-progress="promise">
                <thead md-head md-order="query.order">
                 <tr md-row>
-                 <th md-column md-order-by="desc"><span>Desc</span></th>
-                 <th md-column md-order-by="prix"><span>Prix</span></th>
-                 <th md-column md-order-by="date_ajout"><span>Date d'ajout</span></th>
-                 <th md-column md-order-by="taille"><span>Taille</span></th>
-                 <th md-column md-order-by="commande"><span>Commande</span></th>
+                 <th md-column md-order-by="doc.desc"><span>Desc</span></th>
+                 <th md-column md-numeric md-order-by="doc.prix"><span>Prix</span></th>
+                 <th md-column md-order-by="doc.categorie"><span>Catégorie</span></th>
+                 <th md-column md-order-by="doc.matiere"><span>Matière</span></th>
+                 <th md-column md-order-by="doc.taille"><span>Taille</span></th>
+                 <th md-column md-order-by="doc.date_ajout"><span>Date d'ajout</span></th>
+                 <th md-column md-order-by="doc.commande"><span>Commande</span></th>
               </tr>
            </thead>
            <tbody md-body>
              <tr md-row md-select="piece" ng-repeat="piece in pieces.rows | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
               <td md-cell>{{piece.doc.desc}}</td>
               <td md-cell>{{piece.doc.prix}}</td>
-              <td md-cell>{{piece.doc.date_ajout}}</td>
+              <td md-cell>{{piece.doc.categorie}}</td>
+              <td md-cell>{{piece.doc.matiere}}</td>
               <td md-cell>{{piece.doc.taille}}</td>
-              <td md-cell>{{piece.doc.commande}}</td>
+              <td md-cell>{{piece.doc.date_ajout}}</td>
+              <td md-cell>
+                <md-icon ng-show="piece.doc.commande != true">clear</md-icon>
+                <md-icon ng-show="piece.doc.commande != false">done</md-icon>
+              </td>
            </tr>
         </tbody>
      </table>
   </md-table-container>
    </md-content>
-  <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page" md-total="{{pieces.total_rows}}" md-boundary-links="true"></md-table-pagination>
+  <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page" md-page-select="true" md-total="{{pieces.total_rows}}" md-boundary-links="true"></md-table-pagination>
 </div>
 
 </md-tab>
@@ -64,3 +78,18 @@
 </div>
 
 </div>
+
+<!--
+var piece1 = {
+    _id: 1,
+    prix: 10,
+    collection: "Pinky Poo",
+    categorie: "Coussin",
+    matiere: "Polaire",
+    taille: "Enfant",
+    commande: false,
+    date_ajout: "01/01/2000",
+    date_vente: "02/01/2000",
+    desc: "Tunique bleue jolie"
+  };!-->
+

@@ -47,16 +47,3 @@ angApp.service("prodService", function(){
 });
 
 
-/*
-var piece1 = {
-    _id: 1,
-    prix: 10,
-    collection: "Pinky Poo",
-    categorie: "Coussin",
-    matiere: "Polaire",
-    taille: "Enfant",
-    commande: false,
-    date_ajout: "01/01/2000",
-    date_vente: "02/01/2000",
-    desc: "Tunique bleue jolie"
-  };*/
