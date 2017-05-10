@@ -16,13 +16,13 @@
             <div ng-controller="ProdCtrl" layout="column">
                <md-button style="display: none;" ng-click="addTest()">Add</md-button>
                <md-button style="display: none;" ng-click="addMassTest()">Add Mass</md-button>
-               <md-toolbar>
+               <md-toolbar class="table-toolbar">
                   <md-button class="md-icon-button" ng-click="loadStuff()">
                    <md-icon>refresh</md-icon>
                 </md-button>
              </md-toolbar>
 
-            <md-content style="max-height: calc(100vh - 210px);">
+            <md-content style="max-height: calc(100vh - 180px);">
              <md-table-container>
               <table md-table ng-model="selected" md-progress="promise">
                <thead md-head md-order="query.order">

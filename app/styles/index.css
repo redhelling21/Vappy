@@ -18,6 +18,15 @@
 	min-width: 12px !important;
 	-webkit-app-region: no-drag;
 }
+
+.table-toolbar {
+    min-height: 36px !important;
+    max-height: 36px !important;
+    height: 36px !important;
+    background-color: hsla(0, 0%, 0%, 0.02);
+    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.2);
+}
+
 /* Scrollbar style */
 
 ::-webkit-scrollbar {
