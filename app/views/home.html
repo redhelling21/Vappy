@@ -10,40 +10,40 @@
    </md-button>
 </md-toolbar>
 <div flex layout="row">
-   <div ng-cloak>
-  <md-content>
-    <md-tabs md-dynamic-height md-border-bottom>
-      <md-tab label="Production" ng-controller="ProdCtrl">
+   <div flex ng-cloak>
+   <md-content flex>
+    <md-tabs md-dynamic-height md-border-bottom flex>
+      <md-tab label="Production">
+      <div ng-controller="ProdCtrl">
+      <md-button hidden ng-click="addTest()">Add</md-button>
+      <md-button class="md-icon-button" ng-click="loadStuff()">
+              <md-icon>refresh</md-icon>
+            </md-button>
         <md-table-container>
-           <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
-             <thead md-head md-order="query.order" md-on-reorder="getDesserts">
-               <tr md-row>
-                 <th md-column md-order-by="nameToLower"><span>Dessert (100g serving)</span></th>
-                 <th md-column md-numeric md-order-by="calories.value"><span>Calories</span></th>
-                 <th md-column md-numeric>Fat (g)</th>
-                 <th md-column md-numeric>Carbs (g)</th>
-                 <th md-column md-numeric>Protein (g)</th>
-                 <th md-column md-numeric>Sodium (mg)</th>
-                 <th md-column md-numeric>Calcium (%)</th>
-                 <th md-column md-numeric>Iron (%)</th>
-               </tr>
-             </thead>
-             <tbody md-body>
-               <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="dessert in desserts.data">
-                 <td md-cell>{{dessert.name}}</td>
-                 <td md-cell>{{dessert.calories.value}}</td>
-                 <td md-cell>{{dessert.fat.value | number: 1}}</td>
-                 <td md-cell>{{dessert.carbs.value}}</td>
-                 <td md-cell>{{dessert.protein.value | number: 1}}</td>
-                 <td md-cell>{{dessert.sodium.value}}</td>
-                 <td md-cell>{{dessert.calcium.value}}{{dessert.calcium.unit}}</td>
-                 <td md-cell>{{dessert.iron.value}}{{dessert.iron.unit}}</td>
-               </tr>
-             </tbody>
-           </table>
-         </md-table-container>
+          <table md-table ng-model="selected" md-progress="promise">
+            <thead md-head md-order="query.order">
+              <tr md-row>
+                <th md-column md-order-by="desc"><span>Desc</span></th>
+                <th md-column md-order-by="prix"><span>Prix</span></th>
+                <th md-column md-order-by="date_ajout"><span>Prix</span></th>
+                <th md-column md-order-by="taille"><span>Prix</span></th>
+                <th md-column md-order-by="commande"><span>Prix</span></th>
+              </tr>
+            </thead>
+            <tbody md-body>
+              <tr md-row md-select="piece" ng-repeat="piece in pieces | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                <td md-cell>{{piece.desc}}</td>
+                <td md-cell>{{piece.prix}}</td>
+                <td md-cell>{{piece.date_ajout}}</td>
+                <td md-cell>{{piece.taille}}</td>
+                <td md-cell>{{piece.commande}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </md-table-container>
 
-<md-table-pagination md-limit="query.limit" md-limit-options="[5, 10, 15]" md-page="query.page" md-total="{{desserts.count}}" md-on-paginate="getDesserts" md-page-select></md-table-pagination>
+        <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page" md-total="{{pieces.length}}" md-boundary-links="true"></md-table-pagination>
+</div>
       </md-tab>
       <md-tab label="Inventaire">
         <md-content class="md-padding">
