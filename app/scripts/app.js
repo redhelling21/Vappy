@@ -1,6 +1,9 @@
 const remote = require('electron').remote;
 var NodePouchDB = require('pouchdb');
-var leveldbDB = new NodePouchDB('mydb-leveldb');
+
+var prodDB = new NodePouchDB('prodDB');
+var invDB = new NodePouchDB('invDB');
+var venteDB = new NodePouchDB('venteDB');
 
 var angApp = angular.module('myApp', ['ngMaterial', 'md.data.table']);
 angApp.config(function($mdThemingProvider) {

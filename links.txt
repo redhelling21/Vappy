@@ -1,2 +1,1 @@
-https://codepen.io/acondiff/pen/yepggM
-http://ignitersworld.com/lab/angulargrid/index.html#documentation
+http://stackoverflow.com/questions/21365714/nodejs-error-installing-with-npm
