@@ -17,6 +17,10 @@
                <md-button style="display: none;" ng-click="addTest()">Add</md-button>
                <md-button style="display: none;" ng-click="addMassTest()">Add Mass</md-button>
                <md-toolbar class="table-toolbar" layout = "row">
+                  <md-input-container class="table-search-input">
+                     <md-icon>search</md-icon>
+                     <input ng-model="searchText">
+                  </md-input-container>
                   <div flex></div>
                   <div class="table-toolbar-right-buttons">
                      <md-button class="md-icon-button" ng-click="export()">
@@ -46,7 +50,7 @@
                            </tr>
                         </thead>
                         <tbody md-body>
-                           <tr md-row md-select="piece" ng-repeat="piece in pieces.rows | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                           <tr md-row md-select="piece" ng-repeat="piece in pieces.rows | filter:searchText | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
                               <td md-cell>{{piece.doc.desc}}</td>
                               <td md-cell>{{piece.doc.prix}}</td>
                               <td md-cell>{{piece.doc.categorie}}</td>
@@ -69,6 +73,10 @@
          <md-tab label="Inventaire">
             <div ng-controller="InvCtrl" layout="column">
                <md-toolbar class="table-toolbar" layout = "row">
+               <md-input-container class="table-search-input">
+                     <md-icon>search</md-icon>
+                     <input ng-model="searchText">
+                  </md-input-container>
                   <div flex></div>
                   <div class="table-toolbar-right-buttons">
                      <md-button class="md-icon-button" ng-click="export()">
@@ -96,7 +104,7 @@
                            </tr>
                         </thead>
                         <tbody md-body>
-                           <tr md-row md-select="piece" ng-repeat="piece in pieces.rows | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                           <tr md-row md-select="piece" ng-repeat="piece in pieces.rows | filter:searchText | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
                               <td md-cell>{{piece.doc.desc}}</td>
                               <td md-cell>{{piece.doc.prix}}</td>
                               <td md-cell>{{piece.doc.categorie}}</td>
@@ -124,6 +132,10 @@
          <md-tab label="Vente">
             <div ng-controller="VenteCtrl" layout="column">
                <md-toolbar class="table-toolbar" layout = "row">
+               <md-input-container class="table-search-input">
+                     <md-icon>search</md-icon>
+                     <input ng-model="searchText">
+                  </md-input-container>
                   <div flex></div>
                   <div class="table-toolbar-right-buttons">
                      <md-button class="md-icon-button" ng-click="export()">
@@ -150,7 +162,7 @@
                            </tr>
                         </thead>
                         <tbody md-body>
-                           <tr md-row md-select="piece" ng-repeat="piece in pieces.rows | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                           <tr md-row md-select="piece" ng-repeat="piece in pieces.rows | filter:searchText | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
                               <td md-cell>{{piece.doc.desc}}</td>
                               <td md-cell>{{piece.doc.prix}}</td>
                               <td md-cell>{{piece.doc.categorie}}</td>

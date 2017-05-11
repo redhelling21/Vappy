@@ -10,7 +10,9 @@ controller('ProdCtrl', ['$scope',  'prodService', '$mdDialog', '$mdToast', funct
         limitSelect: true,
         pageSelect: true
     };
-
+    $scope.filter = {
+        search: ''
+    }
     $scope.query = {
         order: 'doc.prix',
         limit: 20,

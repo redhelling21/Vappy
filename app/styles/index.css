@@ -48,6 +48,19 @@ md-dialog-content md-input-container {
     margin: 0px 5px;
 }
 
+.table-search-input {
+    margin: 0px 0px 0px 10px !important;
+}
+
+.table-search-input md-icon{
+    color: #676767 !important;
+}
+
+.table-search-input input{
+    border-width: 0 0 2px;
+    border-color: rgba(0, 0, 0, 0.28);
+}
+
 /* Scrollbar style */
 
 ::-webkit-scrollbar {
