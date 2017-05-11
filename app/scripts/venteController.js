@@ -1,6 +1,7 @@
 angApp.
-controller('VenteCtrl', ['$scope',  'venteService', '$mdDialog', function ($scope, venteService, $mdDialog){
+controller('VenteCtrl', ['$scope',  'venteService', '$mdDialog', '$mdToast', function ($scope, venteService, $mdDialog, $mdToast){
     $scope.selected = [];
+    var {ipcRenderer} = require('electron');
     $scope.limitOptions = [10, 20, 30, 50];
     $scope.options = {
         limitSelect: true,
@@ -25,5 +26,17 @@ controller('VenteCtrl', ['$scope',  'venteService', '$mdDialog', function ($scop
             $scope.pieces = doc;
             nextID = doc.total_rows + 1;
         });
+    };
+
+    $scope.export = function(){
+        $scope.promise = venteService.getAllDocs()
+            .then(function(doc){
+                var temp = [];
+                doc.rows.forEach(function(element){
+                    temp = temp.concat(element.doc);
+                });
+                console.log(temp);
+                ipcRenderer.send('exportVente', temp);
+            });
     }
 }]);

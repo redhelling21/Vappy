@@ -1,7 +1,6 @@
 const remote = require('electron').remote;
 var NodePouchDB = require('pouchdb');
 NodePouchDB.plugin(require('pouchdb-find'));
-
 var prodDB = new NodePouchDB('prodDB');
 var invDB = new NodePouchDB('invDB');
 var venteDB = new NodePouchDB('venteDB');
@@ -49,4 +48,5 @@ angApp.service("venteService", function(){
         return venteDB.allDocs({include_docs: true, descending: true});
     }
 });
+
 

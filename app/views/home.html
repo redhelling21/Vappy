@@ -19,6 +19,9 @@
                <md-button style="display: none;" ng-click="addTest()">Add</md-button>
                <md-button style="display: none;" ng-click="addMassTest()">Add Mass</md-button>
                <md-toolbar class="table-toolbar" layout = "row">
+                  <md-button class="md-icon-button" ng-click="export()">
+                        <md-icon>save</md-icon>
+                  </md-button>
                   <div flex></div>
                   <div class="table-toolbar-right-buttons">
                      <md-button class="md-icon-button" ng-click="showAddPieceForm()">
@@ -70,6 +73,9 @@
          <md-tab label="Inventaire">
             <div ng-controller="InvCtrl" layout="column">
                <md-toolbar class="table-toolbar" layout = "row">
+                  <md-button class="md-icon-button" ng-click="export()">
+                        <md-icon>save</md-icon>
+                  </md-button>
                   <div flex></div>
                   <div class="table-toolbar-right-buttons">
                      <md-button class="md-icon-button" ng-click="loadStuff()">
@@ -122,6 +128,9 @@
          <md-tab label="Vente">
             <div ng-controller="VenteCtrl" layout="column">
                <md-toolbar class="table-toolbar" layout = "row">
+                  <md-button class="md-icon-button" ng-click="export()">
+                        <md-icon>save</md-icon>
+                  </md-button>
                   <div flex></div>
                   <div class="table-toolbar-right-buttons">
                      <md-button class="md-icon-button" ng-click="loadStuff()">

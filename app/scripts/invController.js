@@ -1,6 +1,7 @@
 angApp.
-controller('InvCtrl', ['$scope',  'invService', '$mdDialog', function ($scope, invService, $mdDialog){
+controller('InvCtrl', ['$scope',  'invService', '$mdDialog', '$mdToast', function ($scope, invService, $mdDialog, $mdToast){
     $scope.selected = [];
+    var {ipcRenderer} = require('electron');
     $scope.limitOptions = [10, 20, 30, 50];
     $scope.options = {
         limitSelect: true,
@@ -33,5 +34,17 @@ controller('InvCtrl', ['$scope',  'invService', '$mdDialog', function ($scope, i
             $scope.pieces = doc;
             nextID = doc.total_rows + 1;
         });
+    };
+
+    $scope.export = function(){
+        $scope.promise = invService.getAllDocs()
+            .then(function(doc){
+                var temp = [];
+                doc.rows.forEach(function(element){
+                    temp = temp.concat(element.doc);
+                });
+                console.log(temp);
+                ipcRenderer.send('exportInv', temp);
+            });
     }
 }]);

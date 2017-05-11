@@ -1,7 +1,8 @@
 angApp.
-controller('ProdCtrl', ['$scope',  'prodService', '$mdDialog', function ($scope, prodService, $mdDialog){
+controller('ProdCtrl', ['$scope',  'prodService', '$mdDialog', '$mdToast', function ($scope, prodService, $mdDialog, $mdToast){
     var prod = this;
     var nextID = 1;
+    var {ipcRenderer} = require('electron');
     $scope.counter = 1;
     $scope.selected = [];
     $scope.limitOptions = [10, 20, 30, 50];
@@ -18,7 +19,6 @@ controller('ProdCtrl', ['$scope',  'prodService', '$mdDialog', function ($scope,
 
     $scope.pieces = prodService.getAllDocs();
 
-
     $scope.toggleLimitOptions = function () {
         $scope.limitOptions = $scope.limitOptions ? undefined : [10, 20, 30, 50];
     };
@@ -30,6 +30,27 @@ controller('ProdCtrl', ['$scope',  'prodService', '$mdDialog', function ($scope,
             nextID = doc.total_rows + 1;
         });
     }
+
+    $scope.export = function(){
+        $scope.promise = prodService.getAllDocs()
+            .then(function(doc){
+                var temp = [];
+                doc.rows.forEach(function(element){
+                    temp = temp.concat(element.doc);
+                });
+                console.log(temp);
+                ipcRenderer.send('exportProd', temp);
+            });
+    }
+
+    ipcRenderer.on('exportDataBase-reply', (event, arg) => {
+            $mdToast.show(
+              $mdToast.simple()
+                .textContent('Export réussi !')
+                .position('bottom left right')
+                .hideDelay(3000)
+            );
+    });
 
     $scope.addTest = function(){
         var piece1 = {

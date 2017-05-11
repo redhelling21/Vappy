@@ -27,6 +27,7 @@
   "dependencies": {
     "bower": "^1.8.0",
     "electron-debug": "^1.1.0",
+    "json2xls": "^0.1.2",
     "pouchdb": "^6.2.0",
     "pouchdb-find": "^6.2.0"
   },

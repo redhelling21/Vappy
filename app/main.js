@@ -1,6 +1,8 @@
 'use strict';
 const electron = require('electron');
-const {ipcMain} = require('electron')
+const {ipcMain} = require('electron');
+const json2xls = require('json2xls');
+const fs = require('fs');
 const app = electron.app;
 const remote = electron.remote;
 const dialog = electron.dialog;
@@ -49,3 +51,31 @@ app.on('activate', () => {
 app.on('ready', () => {
     mainWindow = createMainWindow();
 });
+
+ipcMain.on('exportProd', (event, arg) => {
+    exportDB(arg,'db_production.xlsx', event);
+})
+
+ipcMain.on('exportInv', (event, arg) => {
+    exportDB(arg,'db_inventaire.xlsx', event);
+})
+
+ipcMain.on('exportVente', (event, arg) => {
+    exportDB(arg, 'db_vente.xlsx', event);
+})
+
+var exportDB = async function(db, filename, event){
+    var xls = json2xls(db);
+    var promise = await WriteFile(filename, xls);
+    event.sender.send('exportDataBase-reply');
+}
+
+function WriteFile(fileName, data)
+{
+    return new Promise(function(resolve, reject) {
+    fs.writeFile(fileName, data, 'binary', function(err) {
+        if (err) reject(err);
+        else resolve(data);
+    });
+});
+}

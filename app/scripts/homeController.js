@@ -1,7 +1,8 @@
 angApp.
 controller('HomeCtrl', function($scope){
 	var window = remote.getCurrentWindow();
-	const {ipcRenderer} = require('electron');
+    $scope.json2xls = require('electron').remote.require('json2xls');
+	ipcRenderer = require('electron').ipcRenderer;
     $scope.counter = 10;
     $scope.title = "Vappy";
     $scope.closeW = function(){
@@ -17,4 +18,6 @@ controller('HomeCtrl', function($scope){
     $scope.reduceW = function(){
     	window.minimize();
     }
+
+
 });
