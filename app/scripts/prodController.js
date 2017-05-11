@@ -1,10 +1,10 @@
 angApp.
-controller('ProdCtrl', ['$mdEditDialog', '$q', '$scope', '$timeout', 'prodService', function ($mdEditDialog, $q, $scope, $timeout, prodService){
+controller('ProdCtrl', ['$scope',  'prodService', '$mdDialog', function ($scope, prodService, $mdDialog){
+    var prod = this;
+    var nextID = 1;
     $scope.counter = 1;
-
     $scope.selected = [];
     $scope.limitOptions = [10, 20, 30, 50];
-
     $scope.options = {
         limitSelect: true,
         pageSelect: true
@@ -28,6 +28,7 @@ controller('ProdCtrl', ['$mdEditDialog', '$q', '$scope', '$timeout', 'prodServic
         $scope.promise.then(function(doc){
             console.log(doc);
             $scope.pieces = doc;
+            nextID = doc.total_rows + 1;
         });
     }
 
@@ -78,5 +79,52 @@ controller('ProdCtrl', ['$mdEditDialog', '$q', '$scope', '$timeout', 'prodServic
             text += possible.charAt(Math.floor(Math.random() * possible.length));
 
         return text;
+    }
+
+    $scope.showAddPieceForm = function($event){
+        $mdDialog.show({
+          controller: AddPieceController,
+          contollerAs: prod,
+          templateUrl: 'views/addPieceForm.html',
+          parent: angular.element(document.body),
+          targetEvent: $event,
+          clickOutsideToClose:true
+      }).then(function(answer) {
+
+        prodDB.put({
+            _id: nextID.toString(),
+            prix: answer.prix,
+            collection: answer.collection,
+            categorie: answer.categorie,
+            matiere: answer.matiere,
+            taille: answer.taille,
+            commande: answer.commande,
+            date_ajout: new Date(),
+            date_vente: null,
+            desc: answer.desc
+        });
+        $scope.loadStuff();
+        prod.desc = '';
+        prod.prix = 0;
+        prod.collection = '';
+        prod.categorie = '';
+        prod.matiere = '';
+        prod.taille = '';
+        prod.commande =  false;
+    });
+  }
+
+    function AddPieceController($scope, $mdDialog){
+        var prod = this;
+        $scope.categories = ['Veste', 'Chapeau', 'Testé'];
+        $scope.cancel = function($event) {
+            $mdDialog.cancel();
+        };
+        $scope.finish = function($event) {
+            $mdDialog.hide();
+        };
+        $scope.answer = function(answer) {
+            $mdDialog.hide(answer);
+        }
     }
 }]);

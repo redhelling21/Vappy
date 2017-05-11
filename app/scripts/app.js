@@ -12,7 +12,7 @@ var venteDB = new NodePouchDB('venteDB');
   }
 });*/
 
-var angApp = angular.module('myApp', ['ngMaterial', 'md.data.table']);
+var angApp = angular.module('myApp', ['ngMaterial', 'md.data.table', 'ngMessages']);
 angApp.config(function($mdThemingProvider) {
     $mdThemingProvider.theme('default')
         .primaryPalette('blue')

@@ -1,0 +1,58 @@
+<md-dialog>
+  <form>
+    <md-dialog-content style="padding: 20px 20px 0px 20px" layout="column">
+      <md-input-container class="md-block">
+        <label>Libellé</label>
+        <input ng-model="prod.desc">
+      </md-input-container>
+      <div layout="row" flex>
+        <div class="dialog-form-column" layout="column" flex="33">
+          <md-input-container class="md-block">
+            <label>Prix</label>
+            <md-icon>euro_symbol</md-icon>
+            <input ng-model="prod.prix">
+          </md-input-container>
+          <md-input-container style="margin-right: 10px;">
+            <label>Catégorie</label>
+            <md-select ng-model="prod.categorie">
+              <md-option ng-repeat="(i,item) in categories" value="{{item}}" ng-selected="i == 0 ? true:false">{{item}}</md-option>
+            </md-select>
+          </md-input-container>
+        </div>
+
+
+        <div class="dialog-form-column" layout="column" flex="33">
+          <md-input-container class="md-block">
+            <label>Collection</label>
+            <input ng-model="prod.collection">
+          </md-input-container>
+            <md-radio-group ng-model="prod.taille">
+              <md-radio-button value="Enfant"> Enfant </md-radio-button>
+              <md-radio-button value="Adulte">Adulte</md-radio-button>
+            </md-radio-group>
+        </div>
+
+
+        <div class="dialog-form-column" layout="column" flex="33">
+          <md-input-container class="md-block">
+            <label>Matière</label>
+            <input ng-model="prod.matiere">
+          </md-input-container>
+          <md-checkbox ng-model="prod.commande">
+            Commande
+          </md-checkbox>
+        </div>
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button ng-click="answer(prod)" >
+        Ok
+      </md-button>
+      <md-button ng-click="cancel()" style="margin-right:20px;" >
+        Annuler
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

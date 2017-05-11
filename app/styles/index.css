@@ -37,7 +37,15 @@
 }
 
 .table-toolbar-right-buttons {
-    
+
+}
+
+md-dialog-content md-input-container {
+    margin: 10px 0px 0px 0px;
+}
+
+.dialog-form-column {
+    margin: 0px 5px;
 }
 
 /* Scrollbar style */
