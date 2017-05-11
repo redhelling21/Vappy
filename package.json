@@ -12,7 +12,7 @@
   "scripts": {
     "test": "xo",
     "start": "electron .",
-    "build": "electron-packager . --out=dist --asar --overwrite --all",
+    "package-win": "electron-packager . --overwrite --asar=true --icon=app/assets/ico/scissors.ico --prune=true --out=release-builds",
     "postinstall": "electron-rebuild"
   },
   "files": [
