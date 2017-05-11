@@ -16,6 +16,7 @@ controller('InvCtrl', ['$scope',  'invService', '$mdDialog', function ($scope, i
     $scope.sell = function(piece){
         invDB.remove(piece);
         delete piece._rev;
+        piece.date_vente = new Date();
         venteDB.put(piece);
         $scope.loadStuff();
     }
