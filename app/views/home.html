@@ -11,19 +11,17 @@
 </md-toolbar>
 <div flex layout="column">
    <div ng-cloak>
-
-
       <md-tabs md-dynamic-height md-border-bottom layout="column">
          <md-tab label="Production">
             <div ng-controller="ProdCtrl" layout="column">
                <md-button style="display: none;" ng-click="addTest()">Add</md-button>
                <md-button style="display: none;" ng-click="addMassTest()">Add Mass</md-button>
                <md-toolbar class="table-toolbar" layout = "row">
-                  <md-button class="md-icon-button" ng-click="export()">
-                        <md-icon>save</md-icon>
-                  </md-button>
                   <div flex></div>
                   <div class="table-toolbar-right-buttons">
+                     <md-button class="md-icon-button" ng-click="export()">
+                        <md-icon>save</md-icon>
+                     </md-button>
                      <md-button class="md-icon-button" ng-click="showAddPieceForm()">
                         <md-icon>add</md-icon>
                      </md-button>
@@ -68,16 +66,14 @@
                <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page" md-page-select="true" md-total="{{pieces.total_rows}}" md-boundary-links="true"></md-table-pagination>
             </div>
          </md-tab>
-
-
          <md-tab label="Inventaire">
             <div ng-controller="InvCtrl" layout="column">
                <md-toolbar class="table-toolbar" layout = "row">
-                  <md-button class="md-icon-button" ng-click="export()">
-                        <md-icon>save</md-icon>
-                  </md-button>
                   <div flex></div>
                   <div class="table-toolbar-right-buttons">
+                     <md-button class="md-icon-button" ng-click="export()">
+                        <md-icon>save</md-icon>
+                     </md-button>
                      <md-button class="md-icon-button" ng-click="loadStuff()">
                         <md-icon>refresh</md-icon>
                      </md-button>
@@ -128,11 +124,11 @@
          <md-tab label="Vente">
             <div ng-controller="VenteCtrl" layout="column">
                <md-toolbar class="table-toolbar" layout = "row">
-                  <md-button class="md-icon-button" ng-click="export()">
-                        <md-icon>save</md-icon>
-                  </md-button>
                   <div flex></div>
                   <div class="table-toolbar-right-buttons">
+                     <md-button class="md-icon-button" ng-click="export()">
+                        <md-icon>save</md-icon>
+                     </md-button>
                      <md-button class="md-icon-button" ng-click="loadStuff()">
                         <md-icon>refresh</md-icon>
                      </md-button>
