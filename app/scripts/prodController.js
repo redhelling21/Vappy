@@ -26,7 +26,6 @@ controller('ProdCtrl', ['$scope',  'prodService', '$mdDialog', function ($scope,
     $scope.loadStuff = function () {
         $scope.promise = prodService.getAllDocs();
         $scope.promise.then(function(doc){
-            console.log(doc);
             $scope.pieces = doc;
             nextID = doc.total_rows + 1;
         });
@@ -90,8 +89,7 @@ controller('ProdCtrl', ['$scope',  'prodService', '$mdDialog', function ($scope,
           targetEvent: $event,
           clickOutsideToClose:true
       }).then(function(answer) {
-
-        prodDB.put({
+        prodService.producePiece({
             _id: nextID.toString(),
             prix: answer.prix,
             collection: answer.collection,
@@ -114,17 +112,17 @@ controller('ProdCtrl', ['$scope',  'prodService', '$mdDialog', function ($scope,
     });
   }
 
-    function AddPieceController($scope, $mdDialog){
-        var prod = this;
-        $scope.categories = ['Veste', 'Chapeau', 'Testé'];
-        $scope.cancel = function($event) {
-            $mdDialog.cancel();
-        };
-        $scope.finish = function($event) {
-            $mdDialog.hide();
-        };
-        $scope.answer = function(answer) {
-            $mdDialog.hide(answer);
-        }
+  function AddPieceController($scope, $mdDialog){
+    var prod = this;
+    $scope.categories = ['Veste', 'Chapeau', 'Testé'];
+    $scope.cancel = function($event) {
+        $mdDialog.cancel();
+    };
+    $scope.finish = function($event) {
+        $mdDialog.hide();
+    };
+    $scope.answer = function(answer) {
+        $mdDialog.hide(answer);
     }
+}
 }]);

@@ -11,85 +11,167 @@
 </md-toolbar>
 <div flex layout="column">
    <div ng-cloak>
-        <md-tabs md-dynamic-height md-border-bottom layout="column">
+
+
+      <md-tabs md-dynamic-height md-border-bottom layout="column">
          <md-tab label="Production">
             <div ng-controller="ProdCtrl" layout="column">
                <md-button style="display: none;" ng-click="addTest()">Add</md-button>
                <md-button style="display: none;" ng-click="addMassTest()">Add Mass</md-button>
                <md-toolbar class="table-toolbar" layout = "row">
-                <div flex></div>
-                <div class="table-toolbar-right-buttons">
-                  <md-button class="md-icon-button" ng-click="showAddPieceForm()">
-                   <md-icon>add</md-icon>
-                  </md-button>
-                    <md-button class="md-icon-button" ng-click="loadStuff()">
-                     <md-icon>refresh</md-icon>
-                  </md-button>
-                </div>
+                  <div flex></div>
+                  <div class="table-toolbar-right-buttons">
+                     <md-button class="md-icon-button" ng-click="showAddPieceForm()">
+                        <md-icon>add</md-icon>
+                     </md-button>
+                     <md-button class="md-icon-button" ng-click="loadStuff()">
+                        <md-icon>refresh</md-icon>
+                     </md-button>
+                  </div>
+               </md-toolbar>
+               <md-content style="max-height: calc(100vh - 180px);">
+                  <md-table-container>
+                     <table md-table ng-model="selected" md-progress="promise">
+                        <thead md-head md-order="query.order">
+                           <tr md-row>
+                              <th md-column md-order-by="doc.desc"><span>Desc</span></th>
+                              <th md-column md-numeric md-order-by="doc.prix"><span>Prix</span></th>
+                              <th md-column md-order-by="doc.categorie"><span>Catégorie</span></th>
+                              <th md-column md-order-by="doc.matiere"><span>Matière</span></th>
+                              <th md-column md-order-by="doc.taille"><span>Taille</span></th>
+                              <th md-column md-order-by="doc.date_ajout"><span>Date d'ajout</span></th>
+                              <th md-column md-order-by="doc.commande"><span>Commande</span></th>
+                           </tr>
+                        </thead>
+                        <tbody md-body>
+                           <tr md-row md-select="piece" ng-repeat="piece in pieces.rows | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                              <td md-cell>{{piece.doc.desc}}</td>
+                              <td md-cell>{{piece.doc.prix}}</td>
+                              <td md-cell>{{piece.doc.categorie}}</td>
+                              <td md-cell>{{piece.doc.matiere}}</td>
+                              <td md-cell>{{piece.doc.taille}}</td>
+                              <td md-cell>{{piece.doc.date_ajout}}</td>
+                              <td md-cell>
+                                 <md-icon ng-show="piece.doc.commande != true">clear</md-icon>
+                                 <md-icon ng-hide="piece.doc.commande != true">done</md-icon>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </md-table-container>
+               </md-content>
+               <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page" md-page-select="true" md-total="{{pieces.total_rows}}" md-boundary-links="true"></md-table-pagination>
+            </div>
+         </md-tab>
 
-             </md-toolbar>
 
-            <md-content style="max-height: calc(100vh - 180px);">
-             <md-table-container>
-              <table md-table ng-model="selected" md-progress="promise">
-               <thead md-head md-order="query.order">
-                <tr md-row>
-                 <th md-column md-order-by="doc.desc"><span>Desc</span></th>
-                 <th md-column md-numeric md-order-by="doc.prix"><span>Prix</span></th>
-                 <th md-column md-order-by="doc.categorie"><span>Catégorie</span></th>
-                 <th md-column md-order-by="doc.matiere"><span>Matière</span></th>
-                 <th md-column md-order-by="doc.taille"><span>Taille</span></th>
-                 <th md-column md-order-by="doc.date_ajout"><span>Date d'ajout</span></th>
-                 <th md-column md-order-by="doc.commande"><span>Commande</span></th>
-              </tr>
-           </thead>
-           <tbody md-body>
-             <tr md-row md-select="piece" ng-repeat="piece in pieces.rows | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
-              <td md-cell>{{piece.doc.desc}}</td>
-              <td md-cell>{{piece.doc.prix}}</td>
-              <td md-cell>{{piece.doc.categorie}}</td>
-              <td md-cell>{{piece.doc.matiere}}</td>
-              <td md-cell>{{piece.doc.taille}}</td>
-              <td md-cell>{{piece.doc.date_ajout}}</td>
-              <td md-cell>
-                <md-icon ng-show="piece.doc.commande != true">clear</md-icon>
-                <md-icon ng-hide="piece.doc.commande != true">done</md-icon>
-              </td>
-           </tr>
-        </tbody>
-     </table>
-  </md-table-container>
-   </md-content>
-  <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page" md-page-select="true" md-total="{{pieces.total_rows}}" md-boundary-links="true"></md-table-pagination>
+         <md-tab label="Inventaire">
+            <div ng-controller="InvCtrl" layout="column">
+               <md-toolbar class="table-toolbar" layout = "row">
+                  <div flex></div>
+                  <div class="table-toolbar-right-buttons">
+                     <md-button class="md-icon-button" ng-click="loadStuff()">
+                        <md-icon>refresh</md-icon>
+                     </md-button>
+                  </div>
+               </md-toolbar>
+               <md-content style="max-height: calc(100vh - 180px);">
+                  <md-table-container>
+                     <table md-table ng-model="selected" md-progress="promise">
+                        <thead md-head md-order="query.order">
+                           <tr md-row>
+                              <th md-column md-order-by="doc.desc"><span>Desc</span></th>
+                              <th md-column md-numeric md-order-by="doc.prix"><span>Prix</span></th>
+                              <th md-column md-order-by="doc.categorie"><span>Catégorie</span></th>
+                              <th md-column md-order-by="doc.matiere"><span>Matière</span></th>
+                              <th md-column md-order-by="doc.taille"><span>Taille</span></th>
+                              <th md-column md-order-by="doc.date_ajout"><span>Date d'ajout</span></th>
+                              <th md-column md-order-by="doc.commande"><span>Commande</span></th>
+                              <th md-column><span>Vendu ?</span></th>
+                           </tr>
+                        </thead>
+                        <tbody md-body>
+                           <tr md-row md-select="piece" ng-repeat="piece in pieces.rows | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                              <td md-cell>{{piece.doc.desc}}</td>
+                              <td md-cell>{{piece.doc.prix}}</td>
+                              <td md-cell>{{piece.doc.categorie}}</td>
+                              <td md-cell>{{piece.doc.matiere}}</td>
+                              <td md-cell>{{piece.doc.taille}}</td>
+                              <td md-cell>{{piece.doc.date_ajout}}</td>
+                              <td md-cell>
+                                 <md-icon ng-show="piece.doc.commande != true">clear</md-icon>
+                                 <md-icon ng-hide="piece.doc.commande != true">done</md-icon>
+                              </td>
+                              <td md-cell>
+                                 <md-button ng-click="sell(piece.doc)">
+                                    <md-icon>euro_symbol</md-icon>
+                                 </md-button>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </md-table-container>
+               </md-content>
+               <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page" md-page-select="true" md-total="{{pieces.total_rows}}" md-boundary-links="true"></md-table-pagination>
+            </div>
+         </md-tab>
+         <md-tab label="Vente">
+            <div ng-controller="VenteCtrl" layout="column">
+               <md-toolbar class="table-toolbar" layout = "row">
+                  <div flex></div>
+                  <div class="table-toolbar-right-buttons">
+                     <md-button class="md-icon-button" ng-click="loadStuff()">
+                        <md-icon>refresh</md-icon>
+                     </md-button>
+                  </div>
+               </md-toolbar>
+               <md-content style="max-height: calc(100vh - 180px);">
+                  <md-table-container>
+                     <table md-table ng-model="selected" md-progress="promise">
+                        <thead md-head md-order="query.order">
+                           <tr md-row>
+                              <th md-column md-order-by="doc.desc"><span>Desc</span></th>
+                              <th md-column md-numeric md-order-by="doc.prix"><span>Prix</span></th>
+                              <th md-column md-order-by="doc.categorie"><span>Catégorie</span></th>
+                              <th md-column md-order-by="doc.matiere"><span>Matière</span></th>
+                              <th md-column md-order-by="doc.taille"><span>Taille</span></th>
+                              <th md-column md-order-by="doc.date_vente"><span>Date de vente</span></th>
+                              <th md-column md-order-by="doc.commande"><span>Commande</span></th>
+                           </tr>
+                        </thead>
+                        <tbody md-body>
+                           <tr md-row md-select="piece" ng-repeat="piece in pieces.rows | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                              <td md-cell>{{piece.doc.desc}}</td>
+                              <td md-cell>{{piece.doc.prix}}</td>
+                              <td md-cell>{{piece.doc.categorie}}</td>
+                              <td md-cell>{{piece.doc.matiere}}</td>
+                              <td md-cell>{{piece.doc.taille}}</td>
+                              <td md-cell>{{piece.doc.date_vente}}</td>
+                              <td md-cell>
+                                 <md-icon ng-show="piece.doc.commande != true">clear</md-icon>
+                                 <md-icon ng-hide="piece.doc.commande != true">done</md-icon>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </md-table-container>
+               </md-content>
+               <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page" md-page-select="true" md-total="{{pieces.total_rows}}" md-boundary-links="true"></md-table-pagination>
+            </div>
+         </md-tab>
+      </md-tabs>
+   </div>
 </div>
-
-</md-tab>
-<md-tab label="Inventaire">
- <md-content class="md-padding">
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.</p>
-</md-content>
-</md-tab>
-<md-tab label="Vente">
- <md-content class="md-padding">
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.</p>
-</md-content>
-</md-tab>
-</md-tabs>
-</div>
-
-</div>
-
 <!--
-var piece1 = {
-    _id: 1,
-    prix: 10,
-    collection: "Pinky Poo",
-    categorie: "Coussin",
-    matiere: "Polaire",
-    taille: "Enfant",
-    commande: false,
-    date_ajout: "01/01/2000",
-    date_vente: "02/01/2000",
-    desc: "Tunique bleue jolie"
-  };!-->
-
+   var piece1 = {
+       _id: 1,
+       prix: 10,
+       collection: "Pinky Poo",
+       categorie: "Coussin",
+       matiere: "Polaire",
+       taille: "Enfant",
+       commande: false,
+       date_ajout: "01/01/2000",
+       date_vente: "02/01/2000",
+       desc: "Tunique bleue jolie"
+    };!-->

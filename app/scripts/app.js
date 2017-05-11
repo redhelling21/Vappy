@@ -26,24 +26,27 @@ angApp.service("prodService", function(){
         return prodDB.allDocs({include_docs: true, descending: true});
     }
 
-    this.sortByField = function(field, lim, sk){
-        console.log("sort by fields :");
-        console.log(field);
-        console.log(lim);
-        console.log(sk);
-        return prodDB.find({
-          selector: {
-            prix: {$gte: null}
-          },
-          sort: ['prix'],
-          limit: lim,
-          skip: sk
-        });
-    }
-
-    this.filterByFieldValue = function(){
+    this.producePiece = function(piece){
+      prodDB.put(piece);
+      if(piece.commande != true){
+        invDB.put(piece);
+      }else{
+        piece.date_vente = new Date();
+        venteDB.put(piece);
+      }
 
     }
 });
 
+angApp.service("invService", function(){
+    this.getAllDocs = function(){
+        return invDB.allDocs({include_docs: true, descending: true});
+    }
+});
+
+angApp.service("venteService", function(){
+    this.getAllDocs = function(){
+        return venteDB.allDocs({include_docs: true, descending: true});
+    }
+});
 
