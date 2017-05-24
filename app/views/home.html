@@ -159,7 +159,6 @@
                               <th md-column md-order-by="doc.taille"><span>Taille</span></th>
                               <th md-column md-order-by="doc.matiere"><span>Matière</span></th>
                               <th md-column md-order-by="doc.collection"><span>Collection</span></th>
-                              <th md-column md-order-by="doc.date_vente"><span>Date de vente</span></th>
                               <th md-column md-order-by="doc.commande"><span>Commande</span></th>
                               <th md-column md-order-by="doc.dest"><span>Destinataire</span></th>
                            </tr>
@@ -172,7 +171,6 @@
                               <td md-cell>{{piece.doc.taille}}</td>
                               <td md-cell>{{piece.doc.matiere}}</td>
                               <td md-cell>{{piece.doc.collection}}</td>
-                              <td md-cell>{{piece.doc.date_vente}}</td>
                               <td md-cell>
                                  <md-icon ng-show="piece.doc.commande != true">clear</md-icon>
                                  <md-icon ng-hide="piece.doc.commande != true">done</md-icon>
@@ -199,6 +197,5 @@
        taille: "Enfant",
        commande: false,
        date_ajout: "01/01/2000",
-       date_vente: "02/01/2000",
        desc: "Tunique bleue jolie"
     };!-->

@@ -30,7 +30,6 @@ angApp.service("prodService", function(){
       if(piece.commande != true){
         invDB.put(piece);
       }else{
-        piece.date_vente = new Date();
         venteDB.put(piece);
       }
 
@@ -48,5 +47,3 @@ angApp.service("venteService", function(){
         return venteDB.allDocs({include_docs: true, descending: true});
     }
 });
-
-

@@ -5,9 +5,9 @@
 - [x] formatter timestamp pour donner date seulement
 - [ ] différencier taille et adulte/enfant
 - [ ] Collection -> printemps/été et automne/hiver
-- [ ] pas de date de vente
+- [x] pas de date de vente
 - [ ] changement de taille de police ???
-- [ ] ajouter des séparateurs verticaux (tableaux)
+- [x] ajouter des séparateurs verticaux (tableaux)
 - [ ] fichier de configuration ? (collection auto, ...)
 
 ​	=> stocker dernière collection renseignée

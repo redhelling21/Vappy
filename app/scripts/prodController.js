@@ -64,7 +64,6 @@ controller('ProdCtrl', ['$scope',  'prodService', '$mdDialog', '$mdToast', '$fil
             taille: $scope.makeid(),
             commande: false,
             date_ajout: new Date(),
-            date_vente: null,
             desc: $scope.makeid(),
             dest: $scope.makeid()
         };
@@ -84,7 +83,6 @@ controller('ProdCtrl', ['$scope',  'prodService', '$mdDialog', '$mdToast', '$fil
                 taille: $scope.makeid(),
                 commande: false,
                 date_ajout: new Date(),
-                date_vente: null,
                 desc: $scope.makeid(),
                 dest: $scope.makeid()
             };
@@ -123,7 +121,6 @@ controller('ProdCtrl', ['$scope',  'prodService', '$mdDialog', '$mdToast', '$fil
             taille: answer.taille,
             commande: answer.commande,
             date_ajout: $filter('date')(new Date(), 'dd/MM/yy'),
-            date_vente: null,
             desc: answer.desc,
             dest: answer.commande ? answer.dest : ""
         });
