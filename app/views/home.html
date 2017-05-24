@@ -47,6 +47,7 @@
                               <th md-column md-order-by="doc.collection"><span>Collection</span></th>
                               <th md-column md-order-by="doc.date_ajout"><span>Date d'ajout</span></th>
                               <th md-column md-order-by="doc.commande"><span>Commande</span></th>
+                              <th md-column md-order-by="doc.dest"><span>Destinataire</span></th>
                            </tr>
                         </thead>
                         <tbody md-body>
@@ -62,6 +63,7 @@
                                  <md-icon ng-show="piece.doc.commande != true">clear</md-icon>
                                  <md-icon ng-hide="piece.doc.commande != true">done</md-icon>
                               </td>
+                              <td md-cell>{{piece.doc.dest}}</td>
                            </tr>
                         </tbody>
                      </table>
@@ -159,6 +161,7 @@
                               <th md-column md-order-by="doc.collection"><span>Collection</span></th>
                               <th md-column md-order-by="doc.date_vente"><span>Date de vente</span></th>
                               <th md-column md-order-by="doc.commande"><span>Commande</span></th>
+                              <th md-column md-order-by="doc.dest"><span>Destinataire</span></th>
                            </tr>
                         </thead>
                         <tbody md-body>
@@ -174,6 +177,7 @@
                                  <md-icon ng-show="piece.doc.commande != true">clear</md-icon>
                                  <md-icon ng-hide="piece.doc.commande != true">done</md-icon>
                               </td>
+                              <td md-cell>{{piece.doc.dest}}</td>
                            </tr>
                         </tbody>
                      </table>

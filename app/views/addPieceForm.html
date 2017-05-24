@@ -37,6 +37,10 @@
                <md-checkbox ng-model="prod.commande">
                   Commande
                </md-checkbox>
+               <md-input-container ng-if="prod.commande" class="md-block">
+                  <label>Destinataire</label>
+                  <input name="dest" ng-model="prod.dest">
+               </md-input-container>
             </div>
          </div>
       </md-dialog-content>

@@ -1,19 +1,15 @@
-# Oko
+# A faire
 
-Oko is (will be) a metadata editor for pictures.
+- [x] ajouter destinataire pour les commandes -> dans une colonne
 
-# Features
-* Display pictures in a folder (and subfolder)
-* Handles PNG, JPG and GIF files
-* View and edit tags for a picture
-# Upcoming features
-* Handle BMP and WEBM file format (needs sidecar files handling)
-* Bulk tags application
-* View and edit score and geoposition
-* Make it configurable
-# Installation
-Firstly you need to have Node.js installed. Then clone this repo, and once in the Oko directory, enter the following commands :
-> npm install
-> bower install
-# Start
-> npm start
+- [x] formatter timestamp pour donner date seulement
+- [ ] différencier taille et adulte/enfant
+- [ ] Collection -> printemps/été et automne/hiver
+- [ ] pas de date de vente
+- [ ] changement de taille de police ???
+- [ ] ajouter des séparateurs verticaux (tableaux)
+- [ ] fichier de configuration ? (collection auto, ...)
+
+​	=> stocker dernière collection renseignée
+
+- [ ] bouton "tout sauver d'un coup"

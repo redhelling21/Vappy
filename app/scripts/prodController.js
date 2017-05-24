@@ -1,5 +1,5 @@
 angApp.
-controller('ProdCtrl', ['$scope',  'prodService', '$mdDialog', '$mdToast', function ($scope, prodService, $mdDialog, $mdToast){
+controller('ProdCtrl', ['$scope',  'prodService', '$mdDialog', '$mdToast', '$filter', function ($scope, prodService, $mdDialog, $mdToast, $filter){
     var prod = this;
     var nextID = 1;
     var {ipcRenderer} = require('electron');
@@ -65,7 +65,8 @@ controller('ProdCtrl', ['$scope',  'prodService', '$mdDialog', '$mdToast', funct
             commande: false,
             date_ajout: new Date(),
             date_vente: null,
-            desc: $scope.makeid()
+            desc: $scope.makeid(),
+            dest: $scope.makeid()
         };
         prodDB.put(piece1);
         $scope.counter++;
@@ -84,7 +85,8 @@ controller('ProdCtrl', ['$scope',  'prodService', '$mdDialog', '$mdToast', funct
                 commande: false,
                 date_ajout: new Date(),
                 date_vente: null,
-                desc: $scope.makeid()
+                desc: $scope.makeid(),
+                dest: $scope.makeid()
             };
             $scope.counter++;
             prodDB.put(piece1);
@@ -120,9 +122,10 @@ controller('ProdCtrl', ['$scope',  'prodService', '$mdDialog', '$mdToast', funct
             matiere: answer.matiere,
             taille: answer.taille,
             commande: answer.commande,
-            date_ajout: new Date(),
+            date_ajout: $filter('date')(new Date(), 'dd/MM/yy'),
             date_vente: null,
-            desc: answer.desc
+            desc: answer.desc,
+            dest: answer.commande ? answer.dest : ""
         });
         $scope.loadStuff();
         prod.desc = '';
