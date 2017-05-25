@@ -3,6 +3,10 @@ controller('ProdCtrl', ['$scope',  'prodService', '$mdDialog', '$mdToast', '$fil
     var prod = this;
     var nextID = 1;
     var {ipcRenderer} = require('electron');
+    var lastCollection = "Printemps/Eté";
+    var lastSize = "Enfant";
+    var lastDSize = "3 ans";
+    var lastCategory = "Veste";
     $scope.counter = 1;
     $scope.selected = [];
     $scope.limitOptions = [10, 20, 30, 50];
@@ -99,13 +103,20 @@ controller('ProdCtrl', ['$scope',  'prodService', '$mdDialog', '$mdToast', '$fil
 
     $scope.showAddPieceForm = function($event){
         $scope.loadStuff();
+        console.log($scope.lastCollection)
         $mdDialog.show({
           controller: AddPieceController,
           contollerAs: prod,
           templateUrl: 'views/addPieceForm.html',
           parent: angular.element(document.body),
           targetEvent: $event,
-          clickOutsideToClose:true
+          clickOutsideToClose:true,
+          locals: {
+              lastCollection: lastCollection,
+              lastSize: lastSize,
+              lastDSize: lastDSize,
+              lastCategory: lastCategory
+          }
       }).then(function(answer) {
         prodService.producePiece({
             _id: nextID.toString(),
@@ -120,30 +131,25 @@ controller('ProdCtrl', ['$scope',  'prodService', '$mdDialog', '$mdToast', '$fil
             desc: answer.desc,
             dest: answer.commande ? answer.dest : ""
         });
+        lastCollection = answer.collection;
+        lastSize = answer.taille;
+        lastDSize = answer.d_taille;
+        lastCategory = answer.categorie;
 
         $scope.loadStuff();
-        prod.desc = '';
-        prod.prix = 0;
-        prod.collection = 'Printemps/Eté';
-        prod.categorie = '';
-        prod.matiere = '';
-        prod.taille = 'Enfant';
-        prod.d_taille = '';
-        prod.commande =  false;
-        prod.dest = '';
     });
   }
 
-  function AddPieceController($scope, $mdDialog){
+  function AddPieceController($scope, $mdDialog, lastCollection, lastSize, lastDSize, lastCategory){
     $scope.prod = this;
-    this.collection = 'Printemps/Eté';
-    this.taille = "Enfant";
+    this.collection = lastCollection;
+    this.taille = lastSize;
+    this.d_taille = lastDSize;
+    this.categorie = lastCategory;
     $scope.categories = ['Veste', 'Chapeau', 'Testé'];
     $scope.tailles_adulte = ['S', 'M', 'L', 'XL', 'XXL'];
     $scope.tailles_enfant = ['3 ans', '6 ans', '9 ans', '12 ans'];
-    $scope.printTaille = function(){
-        console.log($scope);
-    }
+    console.log($scope);
     $scope.cancel = function($event) {
         $mdDialog.cancel();
     };

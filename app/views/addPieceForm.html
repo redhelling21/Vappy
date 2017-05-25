@@ -28,7 +28,7 @@
                <md-input-container style="margin-right: 10px; margin-bottom: 24px" class="md-block">
                   <label>Catégorie</label>
                   <md-select ng-required="true" ng-model="prod.categorie">
-                     <md-option ng-repeat="(i,item) in categories" value="{{item}}" ng-selected="i == 0 ? true:false">{{item}}</md-option>
+                     <md-option ng-repeat="(i,item) in categories" value="{{item}}" ng-selected="item == prod.categorie ? true:false">{{item}}</md-option>
                   </md-select>
                </md-input-container>
                <md-input-container class="radio-group-container md-block md-input-has-value">
@@ -41,13 +41,13 @@
                <md-input-container ng-if="prod.taille == 'Enfant'" style="margin-right: 10px;">
                   <label>Détail taille</label>
                   <md-select ng-required="true" ng-model="prod.d_taille">
-                     <md-option ng-repeat="(i,item) in tailles_enfant" value="{{item}}" ng-selected="i == 0 ? true:false">{{item}}</md-option>
+                     <md-option ng-repeat="(i,item) in tailles_enfant" value="{{item}}" ng-selected="item == prod.d_taille ? true:false">{{item}}</md-option>
                   </md-select>
                </md-input-container>
                <md-input-container ng-if="prod.taille == 'Adulte'" style="margin-right: 10px;">
                   <label>Détail taille</label>
                   <md-select ng-required="true" ng-model="prod.d_taille">
-                     <md-option ng-repeat="(i,item) in tailles_adulte" value="{{item}}" ng-selected="i == 0 ? true:false">{{item}}</md-option>
+                     <md-option ng-repeat="(i,item) in tailles_adulte" value="{{item}}" ng-selected="item == prod.d_taille ? true:false">{{item}}</md-option>
                   </md-select>
                </md-input-container>
 
