@@ -6,7 +6,7 @@
             <input ng-required="true" ng-model="prod.desc">
          </md-input-container>
          <div layout="row" flex>
-            <div class="dialog-form-column" layout="column" flex="33">
+            <div class="dialog-form-column" layout="column" flex="50">
                <md-input-container class="md-block">
                   <label>Prix</label>
                   <md-icon>euro_symbol</md-icon>
@@ -19,8 +19,12 @@
                   <md-radio-button value="Automne/Hiver">Automne/Hiver</md-radio-button>
                </md-radio-group>
             </md-input-container>
+            <md-input-container class="md-block">
+               <label>Matière</label>
+               <input ng-required="true" name="matiere" ng-model="prod.matiere">
+            </md-input-container>
             </div>
-            <div class="dialog-form-column" layout="column" flex="33">
+            <div class="dialog-form-column" layout="column" flex="50">
                <md-input-container style="margin-right: 10px; margin-bottom: 24px" class="md-block">
                   <label>Catégorie</label>
                   <md-select ng-required="true" ng-model="prod.categorie">
@@ -48,19 +52,18 @@
                </md-input-container>
 
             </div>
-            <div class="dialog-form-column" layout="column" flex="33">
-               <md-input-container class="md-block">
-                  <label>Matière</label>
-                  <input ng-required="true" name="matiere" ng-model="prod.matiere">
-               </md-input-container>
-               <md-checkbox ng-model="prod.commande">
-                  Commande
-               </md-checkbox>
-               <md-input-container class="md-block">
-                  <label>Destinataire</label>
-                  <input ng-disabled="!prod.commande" name="dest" ng-model="prod.dest">
-               </md-input-container>
-            </div>
+
+         </div>
+         <div layout="row" flex>
+<md-input-container class="md-block" style="margin-right: 10px">
+            <md-checkbox flex ng-model="prod.commande" class="reverse-checkbox">
+               Commande
+            </md-checkbox>
+         </md-input-container>
+            <md-input-container class="md-block">
+               <label>Destinataire</label>
+               <input ng-disabled="!prod.commande" name="dest" ng-model="prod.dest">
+            </md-input-container>
          </div>
       </md-dialog-content>
       <md-dialog-actions layout="row">
