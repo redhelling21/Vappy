@@ -12,22 +12,41 @@
                   <md-icon>euro_symbol</md-icon>
                   <input name="prix" ng-required="true" type="number" ng-model="prod.prix">
                </md-input-container>
-               <md-input-container style="margin-right: 10px;">
+               <md-input-container class="md-block md-input-has-value">
+               <label>Collection</label>
+               <md-radio-group ng-required="true" ng-model="prod.collection">
+                  <md-radio-button value="Printemps/Eté">Printemps/Eté</md-radio-button>
+                  <md-radio-button value="Automne/Hiver">Automne/Hiver</md-radio-button>
+               </md-radio-group>
+            </md-input-container>
+            </div>
+            <div class="dialog-form-column" layout="column" flex="33">
+               <md-input-container style="margin-right: 10px; margin-bottom: 24px" class="md-block">
                   <label>Catégorie</label>
                   <md-select ng-required="true" ng-model="prod.categorie">
                      <md-option ng-repeat="(i,item) in categories" value="{{item}}" ng-selected="i == 0 ? true:false">{{item}}</md-option>
                   </md-select>
                </md-input-container>
-            </div>
-            <div class="dialog-form-column" layout="column" flex="33">
-               <md-input-container class="md-block">
-                  <label>Collection</label>
-                  <input ng-required="true" ng-model="prod.collection">
-               </md-input-container>
+               <md-input-container class="md-block md-input-has-value">
+                  <label>Taille</label>
                <md-radio-group ng-required="true" ng-model="prod.taille">
-                  <md-radio-button value="Enfant"> Enfant </md-radio-button>
+                  <md-radio-button ng-checked="true" value="Enfant">Enfant</md-radio-button>
                   <md-radio-button value="Adulte">Adulte</md-radio-button>
                </md-radio-group>
+            </md-input-container>
+               <md-input-container ng-if="prod.taille == 'Enfant'" style="margin-right: 10px;">
+                  <label>Détail taille</label>
+                  <md-select ng-required="true" ng-model="prod.d_taille">
+                     <md-option ng-repeat="(i,item) in tailles_enfant" value="{{item}}" ng-selected="i == 0 ? true:false">{{item}}</md-option>
+                  </md-select>
+               </md-input-container>
+               <md-input-container ng-if="prod.taille == 'Adulte'" style="margin-right: 10px;">
+                  <label>Détail taille</label>
+                  <md-select ng-required="true" ng-model="prod.d_taille">
+                     <md-option ng-repeat="(i,item) in tailles_adulte" value="{{item}}" ng-selected="i == 0 ? true:false">{{item}}</md-option>
+                  </md-select>
+               </md-input-container>
+
             </div>
             <div class="dialog-form-column" layout="column" flex="33">
                <md-input-container class="md-block">
@@ -37,9 +56,9 @@
                <md-checkbox ng-model="prod.commande">
                   Commande
                </md-checkbox>
-               <md-input-container ng-if="prod.commande" class="md-block">
+               <md-input-container class="md-block">
                   <label>Destinataire</label>
-                  <input name="dest" ng-model="prod.dest">
+                  <input ng-disabled="!prod.commande" name="dest" ng-model="prod.dest">
                </md-input-container>
             </div>
          </div>

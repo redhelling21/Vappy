@@ -62,6 +62,7 @@ controller('ProdCtrl', ['$scope',  'prodService', '$mdDialog', '$mdToast', '$fil
             categorie: $scope.makeid(),
             matiere: $scope.makeid(),
             taille: $scope.makeid(),
+            d_taille: $scope.makeid(),
             commande: false,
             date_ajout: new Date(),
             desc: $scope.makeid(),
@@ -81,6 +82,7 @@ controller('ProdCtrl', ['$scope',  'prodService', '$mdDialog', '$mdToast', '$fil
                 categorie: $scope.makeid(),
                 matiere: $scope.makeid(),
                 taille: $scope.makeid(),
+                d_taille: $scope.makeid(),
                 commande: false,
                 date_ajout: new Date(),
                 desc: $scope.makeid(),
@@ -119,25 +121,36 @@ controller('ProdCtrl', ['$scope',  'prodService', '$mdDialog', '$mdToast', '$fil
             categorie: answer.categorie,
             matiere: answer.matiere,
             taille: answer.taille,
+            d_taille: answer.d_taille,
             commande: answer.commande,
             date_ajout: $filter('date')(new Date(), 'dd/MM/yy'),
             desc: answer.desc,
             dest: answer.commande ? answer.dest : ""
         });
+
         $scope.loadStuff();
         prod.desc = '';
         prod.prix = 0;
-        prod.collection = '';
+        prod.collection = 'Printemps/Eté';
         prod.categorie = '';
         prod.matiere = '';
-        prod.taille = '';
+        prod.taille = 'Enfant';
+        prod.d_taille = '';
         prod.commande =  false;
+        prod.dest = '';
     });
   }
 
   function AddPieceController($scope, $mdDialog){
-    var prod = this;
+    $scope.prod = this;
+    this.collection = 'Printemps/Eté';
+    this.taille = "Enfant";
     $scope.categories = ['Veste', 'Chapeau', 'Testé'];
+    $scope.tailles_adulte = ['S', 'M', 'L', 'XL', 'XXL'];
+    $scope.tailles_enfant = ['3ans', '6ans', '9ans', '12ans'];
+    $scope.printTaille = function(){
+        console.log($scope);
+    }
     $scope.cancel = function($event) {
         $mdDialog.cancel();
     };

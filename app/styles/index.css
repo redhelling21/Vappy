@@ -65,8 +65,8 @@ table.md-table td.md-cell {border-left: 1px rgba(0, 0, 0, 0.12) solid; padding: 
 table.md-table td.md-cell, table.md-table th.md-column {text-align: center !important;}
 th.md-column:nth-child(n+2) {padding-right: 23px !important; padding-left: 23px !important;}
 table.md-table th.md-column md-icon.md-sort-icon {color: rgb(0, 0, 0); opacity: 0.3}
-/* Scrollbar style */
 
+/* Scrollbar style */
 ::-webkit-scrollbar {
     width: 20px;
     height: 18px;
