@@ -77,6 +77,10 @@ md-dialog-content md-input-container {
     margin-right: 10px;
 }
 
+.radio-group-container label {
+    margin-bottom: 8px;
+}
+
 table.md-table td.md-cell {border-left: 1px rgba(0, 0, 0, 0.12) solid; padding: 0 24px !important;}
 table.md-table td.md-cell, table.md-table th.md-column {text-align: center !important;}
 th.md-column:nth-child(n+2) {padding-right: 23px !important; padding-left: 23px !important;}

@@ -106,6 +106,7 @@ controller('ProdCtrl', ['$scope',  'prodService', '$mdDialog', '$mdToast', '$fil
     }
 
     $scope.showAddPieceForm = function($event){
+        $scope.loadStuff();
         $mdDialog.show({
           controller: AddPieceController,
           contollerAs: prod,
@@ -147,7 +148,7 @@ controller('ProdCtrl', ['$scope',  'prodService', '$mdDialog', '$mdToast', '$fil
     this.taille = "Enfant";
     $scope.categories = ['Veste', 'Chapeau', 'Testé'];
     $scope.tailles_adulte = ['S', 'M', 'L', 'XL', 'XXL'];
-    $scope.tailles_enfant = ['3ans', '6ans', '9ans', '12ans'];
+    $scope.tailles_enfant = ['3 ans', '6 ans', '9 ans', '12 ans'];
     $scope.printTaille = function(){
         console.log($scope);
     }

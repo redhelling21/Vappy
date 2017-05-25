@@ -12,7 +12,7 @@
                   <md-icon>euro_symbol</md-icon>
                   <input name="prix" ng-required="true" type="number" ng-model="prod.prix">
                </md-input-container>
-               <md-input-container class="md-block md-input-has-value">
+               <md-input-container class="radio-group-container md-block md-input-has-value">
                <label>Collection</label>
                <md-radio-group ng-required="true" ng-model="prod.collection">
                   <md-radio-button value="Printemps/Eté">Printemps/Eté</md-radio-button>
@@ -31,7 +31,7 @@
                      <md-option ng-repeat="(i,item) in categories" value="{{item}}" ng-selected="i == 0 ? true:false">{{item}}</md-option>
                   </md-select>
                </md-input-container>
-               <md-input-container class="md-block md-input-has-value">
+               <md-input-container class="radio-group-container md-block md-input-has-value">
                   <label>Taille</label>
                <md-radio-group ng-required="true" ng-model="prod.taille">
                   <md-radio-button ng-checked="true" value="Enfant">Enfant</md-radio-button>
