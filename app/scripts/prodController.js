@@ -34,15 +34,7 @@ controller('ProdCtrl', ['$scope',  'prodService', '$mdDialog', '$mdToast', '$fil
     }
 
     $scope.export = function(){
-        $scope.promise = prodService.getAllDocs()
-            .then(function(doc){
-                var temp = [];
-                doc.rows.forEach(function(element){
-                    temp = temp.concat(element.doc);
-                });
-                console.log(temp);
-                ipcRenderer.send('exportProd', temp);
-            });
+        $scope.promise = prodService.export();
     }
 
     ipcRenderer.on('exportDataBase-reply', (event, arg) => {

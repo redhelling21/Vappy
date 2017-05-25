@@ -23,6 +23,9 @@
                   </md-input-container>
                   <div flex></div>
                   <div class="table-toolbar-right-buttons">
+                     <md-button class="md-icon-button" ng-click="$parent.export_all()">
+                        <md-icon style="color : #2196f3">save</md-icon>
+                     </md-button>
                      <md-button class="md-icon-button" ng-click="export()">
                         <md-icon>save</md-icon>
                      </md-button>
@@ -77,12 +80,15 @@
          <md-tab label="Inventaire">
             <div ng-controller="InvCtrl" layout="column">
                <md-toolbar class="table-toolbar" layout = "row">
-               <md-input-container class="table-search-input">
+                  <md-input-container class="table-search-input">
                      <md-icon>search</md-icon>
                      <input ng-model="searchText">
                   </md-input-container>
                   <div flex></div>
                   <div class="table-toolbar-right-buttons">
+                     <md-button class="md-icon-button" ng-click="$parent.export_all()">
+                        <md-icon style="color : #2196f3">save</md-icon>
+                     </md-button>
                      <md-button class="md-icon-button" ng-click="export()">
                         <md-icon>save</md-icon>
                      </md-button>
@@ -138,12 +144,15 @@
          <md-tab label="Vente">
             <div ng-controller="VenteCtrl" layout="column">
                <md-toolbar class="table-toolbar" layout = "row">
-               <md-input-container class="table-search-input">
+                  <md-input-container class="table-search-input">
                      <md-icon>search</md-icon>
                      <input ng-model="searchText">
                   </md-input-container>
                   <div flex></div>
                   <div class="table-toolbar-right-buttons">
+                     <md-button class="md-icon-button" ng-click="$parent.export_all()">
+                        <md-icon style="color : #2196f3">save</md-icon>
+                     </md-button>
                      <md-button class="md-icon-button" ng-click="export()">
                         <md-icon>save</md-icon>
                      </md-button>
@@ -194,14 +203,14 @@
    </div>
 </div>
 <!--
-   var piece1 = {
-       _id: 1,
-       prix: 10,
-       collection: "Pinky Poo",
-       categorie: "Coussin",
-       matiere: "Polaire",
-       taille: "Enfant",
-       commande: false,
-       date_ajout: "01/01/2000",
-       desc: "Tunique bleue jolie"
-    };!-->
+var piece1 = {
+_id: 1,
+prix: 10,
+collection: "Pinky Poo",
+categorie: "Coussin",
+matiere: "Polaire",
+taille: "Enfant",
+commande: false,
+date_ajout: "01/01/2000",
+desc: "Tunique bleue jolie"
+};!-->

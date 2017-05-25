@@ -12,4 +12,4 @@
 
   ​=> stocker dernière collection renseignée
 
-- [ ] bouton "tout sauver d'un coup"
+- [x] bouton "tout sauver d'un coup"

@@ -29,14 +29,6 @@ controller('VenteCtrl', ['$scope',  'venteService', '$mdDialog', '$mdToast', fun
     };
 
     $scope.export = function(){
-        $scope.promise = venteService.getAllDocs()
-            .then(function(doc){
-                var temp = [];
-                doc.rows.forEach(function(element){
-                    temp = temp.concat(element.doc);
-                });
-                console.log(temp);
-                ipcRenderer.send('exportVente', temp);
-            });
+        $scope.promise = venteService.export();
     }
 }]);

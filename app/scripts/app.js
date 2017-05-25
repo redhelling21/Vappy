@@ -32,7 +32,18 @@ angApp.service("prodService", function(){
       }else{
         venteDB.put(piece);
       }
+    }
 
+    this.export = function(){
+      return this.getAllDocs()
+              .then(function(doc){
+                  var temp = [];
+                  doc.rows.forEach(function(element){
+                      temp = temp.concat(element.doc);
+                  });
+                  console.log(temp);
+                  ipcRenderer.send('exportProd', temp);
+              });
     }
 });
 
@@ -40,10 +51,34 @@ angApp.service("invService", function(){
     this.getAllDocs = function(){
         return invDB.allDocs({include_docs: true, descending: true});
     }
+
+    this.export = function(){
+      return this.getAllDocs()
+              .then(function(doc){
+                  var temp = [];
+                  doc.rows.forEach(function(element){
+                      temp = temp.concat(element.doc);
+                  });
+                  console.log(temp);
+                  ipcRenderer.send('exportInv', temp);
+              });
+    }
 });
 
 angApp.service("venteService", function(){
     this.getAllDocs = function(){
         return venteDB.allDocs({include_docs: true, descending: true});
+    }
+
+    this.export = function(){
+      return this.getAllDocs()
+              .then(function(doc){
+                  var temp = [];
+                  doc.rows.forEach(function(element){
+                      temp = temp.concat(element.doc);
+                  });
+                  console.log(temp);
+                  ipcRenderer.send('exportVente', temp);
+              });
     }
 });

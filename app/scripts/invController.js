@@ -36,14 +36,6 @@ controller('InvCtrl', ['$scope',  'invService', '$mdDialog', '$mdToast', functio
     };
 
     $scope.export = function(){
-        $scope.promise = invService.getAllDocs()
-            .then(function(doc){
-                var temp = [];
-                doc.rows.forEach(function(element){
-                    temp = temp.concat(element.doc);
-                });
-                console.log(temp);
-                ipcRenderer.send('exportInv', temp);
-            });
+        $scope.promise = invService.export();
     }
 }]);
