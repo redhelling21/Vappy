@@ -8,3 +8,17 @@ ajouter des séparateurs verticaux (tableaux)
 fichier de configuration ? (collection auto, ...)
 	=> stocker dernière collection renseignée
 bouton "tout sauver d'un coup"
+
+----- Session 2 -------
+
+Tailles :
+	Enfant : 12-18 mois, 18mois-2ans, 4ans, 6ans, 8ans, autre
+	Adulte: Sarah, 1, pomme, 2, 3, autre
+	Bavoir, Trousse de toilette, Poncho : 1, 2, 3, 4
+
+Catégorie: Bavoir, Tablier, PCS, Poncho, Poncho ponpon, Bonnet noeud, bonnet etoile, plaid, boite a musique, sortie de bain, chapi-chapo, sac de fille, sac a dos, sac a jouets, cagoule, trousse de toilette, essuie-main, peignoir, tapis d'éveil, coussin, divers, ensemble de bain, robe de chambre, robe fillette, bouillotte
+(adulte)	capes, béret, béret déco, gilet sans manche, écharpe déco, veste, col chaud, chapeau cloche, bolero, p'tite maille, pimprenelle, pomponnette, poncho court, poncho long, châle, châle déco, broche à B, cape-châle, tulipette, robe, tunique, débardeur
+-> par ordre alphabetique
+
+créer fichier config pour stocker les tailles, catégories, etc...
+
